@@ -1,0 +1,18 @@
+{
+  "buildings": {
+    "building_id": "ObjectId",
+    "name": "string",
+    "location": "string",
+    "floors": "int",
+    "created_at": "timestamp"
+  },
+  "sensors": {
+    "sensor_id": "ObjectId",
+    "building_id": "ObjectId",
+    "floor": "int",
+    "type": "string",
+    "unit": "string",
+    "value": "float",
+    "timestamp": "timestamp"
+  }
+}
