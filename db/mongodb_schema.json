@@ -1,18 +1,8 @@
 {
-  "buildings": {
-    "building_id": "ObjectId",
-    "name": "string",
-    "location": "string",
-    "floors": "int",
-    "created_at": "timestamp"
-  },
-  "sensors": {
-    "sensor_id": "ObjectId",
-    "building_id": "ObjectId",
-    "floor": "int",
-    "type": "string",
-    "unit": "string",
-    "value": "float",
-    "timestamp": "timestamp"
-  }
+  "event_id": "string",
+  "equipment": "string",
+  "issue": "string",
+  "timestamp": "ISODate",
+  "resolution_time_hours": "double",
+  "impact": "string"
 }
