@@ -9,7 +9,7 @@ require("dotenv").config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const NLP_SERVICE_URL = "http://localhost:5000/nlp"; // Update as needed
+const NLP_SERVICE_URL = "http://localhost:5000/nlp";
 const JWT_SECRET = crypto.randomBytes(64).toString("hex");
 console.log("JWT_SECRET:", JWT_SECRET);
 
@@ -19,7 +19,7 @@ const logger = winston.createLogger({
   format: winston.format.json(),
   transports: [
     new winston.transports.Console(),
-    new winston.transports.File({ filename: 'combined.log' }), // Log file
+    new winston.transports.File({ filename: 'combined.log' }),
   ],
 });
 
@@ -28,8 +28,8 @@ app.use(bodyParser.json());
 
 // Rate limit middleware for the /query endpoint
 const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // Limit each IP to 100 requests per windowMs
+  windowMs: 15 * 60 * 1000, 
+  max: 100,
 });
 app.use("/query", limiter);
 
@@ -41,7 +41,6 @@ const authenticateJWT = (roles) => {
       logger.warn("Access Denied: No Token Provided");
       return res.status(401).json({ message: "Access Denied: No Token Provided" });
     }
-
     jwt.verify(token.replace("Bearer ", ""), JWT_SECRET, (err, user) => {
       if (err) {
         logger.warn("Invalid Token");
@@ -60,13 +59,10 @@ const authenticateJWT = (roles) => {
 // Public route (e.g., login)
 app.post("/login", (req, res) => {
   const { username, role } = req.body;
-  
-  // TODO: Add user validation from database or other source
   if (!username || !role) {
     logger.error("Username and Role required");
     return res.status(400).json({ message: "Username and Role required" });
   }
-
   const token = jwt.sign({ username, role }, JWT_SECRET, { expiresIn: "1h" });
   res.json({ token });
 });
