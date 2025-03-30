@@ -1,0 +1,31 @@
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Python files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+env/
+venv/
+
+# Ignore Node.js dependencies
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Ignore logs and temporary files
+logs/
+*.log
+*.out
+*.tmp
+
+# Ignore IDE settings
+.vscode/
+.idea/
+*.iml
+
+# Ignore environment variables
+.env

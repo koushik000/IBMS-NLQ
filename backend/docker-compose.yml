@@ -1,0 +1,15 @@
+version: '3'
+services:
+  api_gateway:
+    build:
+      context: ./backend  # Adjust the path
+    ports:
+      - "3000:3000"  # Expose API Gateway on port 3000
+    depends_on:
+      - nlp_service
+
+  nlp_service:
+    build:
+      context: ./backend/nlp  # Adjust the path
+    ports:
+      - "5000:5000"  # Expose NLP service on port 5000
