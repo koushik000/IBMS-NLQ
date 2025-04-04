@@ -4,7 +4,8 @@ const { MongoClient } = require('mongodb');
 const { Client } = require('pg'); // For PostgreSQL
 const axios = require('axios');
 const { InfluxDB } = require('@influxdata/influxdb-client');
-import chromadb from 'chromadb';
+const chromadb = require('chromadb');
+
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -24,7 +25,13 @@ const financialsClient = new Client({
 });
 
 // ChromaDB setup for vector search
-const chromaClient = new chromadb.PersistentClient({ path: "./vector_db" });
+
+
+const { ChromaClient } = require("chromadb");
+
+const chromaClient = new ChromaClient({ path: "./vector_db" });
+
+
 
 const influxDB = new InfluxDB({
   url: 'http://20.193.132.66:8086',
